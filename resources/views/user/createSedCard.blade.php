@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">{{ __('SedCard Form') }}</div>
                 <div class="card-body">
-                    <form method="post" action="{{route('sedcard.created')}}">
+                    <form method="post" action="{{route('sedcard.created')}}" id="dynamic_form">
                         @csrf
                         Name: <input type="text" name="name" value={{old('name')}}> {{$errors->first('name')}}<br>
                         Title: <input type="text" name="title" value={{old('title')}}>{{$errors->first('title')}} <br>
@@ -121,6 +121,26 @@
                         <label>no</label>
                         {{$errors->first('dominant')}}<br>
                         Price description: <input type="text" name="priceDescription" value={{old('priceDescription')}}> {{$errors->first('priceDescription')}}<br>
+                       
+                        Service Time
+                        <div class="table-responsive">
+                             <table class="table table-bordered table-striped" id="user_table">
+                           <thead>
+                           </thead>
+                           <tbody>
+                            
+            
+                           </tbody>
+                           <tfoot>
+                            <tr>
+                                            <td colspan="2" align="right">&nbsp;</td>
+                                            <td>
+                              
+                             </td>
+                            </tr>
+                           </tfoot>
+                       </table>
+               </div>
                         Availability description: <input type="text" name="availabilityDescription" value={{old('availabilityDescription')}} > {{$errors->first('availabilityDescription')}}<br>
                         Phone description: <input type="text" name="phoneDescription" value={{old('phoneDescription')}}> {{$errors->first('phoneDescription')}}<br>
                         SedCard Description: <input type="text" name="sedcarddescription" value={{old('sedcarddescription') }}> <br>
@@ -180,7 +200,7 @@
                         {{$errors->first('active')}}<br>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit"name="save" id="save" value="Save" class="btn btn-primary">
                                     {{ __('Submit') }}
                                 </button>
                             </div>
@@ -194,4 +214,45 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+    
+     var count = 0;
+    
+     dynamic_field(count);
+    
+     function dynamic_field(number)
+     {
+      html = '<tr>';
+            html += '<td><select name="day[]" required ><option disabled="disabled" selected="selected">Days</option>@foreach($days as $day)<option value="{{$day->name}}">{{$day->name}}</option>@endforeach</td>';
+            html += '<td><select name="from[]" required ><option disabled="disabled" selected="selected">From</option>@foreach($times as $time)<option value="{{$time->name}}">{{$time->name}}</option>@endforeach</td>';
+            html += '<td><select name="to[]" required ><option disabled="disabled" selected="selected">To</option>@foreach($times as $time)<option value="{{$time->name}}">{{$time->name}}</option>@endforeach</td>';
+            if(number > 0)
+            {
+                html += '<td><button type="button" name="remove" id="" class="btn btn-danger remove">Remove</button></td></tr>';
+                $('tbody').append(html);
+            }
+            else
+            {   
+                html += '<td><button type="button" name="add" id="add" class="btn btn-success">Add</button></td>';
+                html += '<td><input type="checkbox" id="everyday" name="everyday" value="everyday"><label for="everyday"> Check if you want  enable it for everyday</label></td></tr>';
+
+                $('tbody').html(html);
+                
+                
+            }
+     }
+    
+     $(document).on('click', '#add', function(){
+      count++;
+      dynamic_field(count);
+     });
+    
+     $(document).on('click', '.remove', function(){
+      count--;
+      $(this).closest("tr").remove();
+     });
+    
+    });
+    </script>
 @endsection

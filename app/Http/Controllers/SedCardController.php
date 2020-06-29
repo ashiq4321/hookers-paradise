@@ -15,6 +15,7 @@ use App\HairLength;
 use App\BraSize;
 use App\BodyHair;
 use App\SedCardLanguage;
+use App\SedcardAvailability;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -40,12 +41,16 @@ class SedCardController extends Controller
         $hairlengths = DB::table('hairlengths')->get();
         $pubichairs = DB::table('pubichairs')->get();
         $languages = DB::table('languages')->get();
+        $times = DB::table('times')->get();
+        $days = DB::table('days')->get();
         return view('user.createSedCard', ['bodyhairs'=>$bodyhairs,
                                             'brasizes'=>$brasizes,
                                             'colors'=>$colors,
                                             'hairlengths'=>$hairlengths,
                                             'pubichairs'=>$pubichairs,
-                                            'languages'=>$languages
+                                            'languages'=>$languages,
+                                            'times'=>$times,
+                                            'days'=>$days,
                                              ]);
         
     }
@@ -199,8 +204,11 @@ class SedCardController extends Controller
         
         
     }
+    
+    
     public function sedCardCreated( Request $request )// To Create sedCard
     {
+      
         $validation = Validator::make($request->all(), [
             'name'=>'required',
             'title'=>'required',
@@ -235,7 +243,11 @@ class SedCardController extends Controller
             'locationName'=>'required',
             'locationTitle'=>'required',
             'locationdescription'=>'required',
-            'language'=>'required'
+            'day'=>'required',
+            'from'=>'required',
+            'to'=>'required',
+
+
 
         ]);
         																
@@ -318,13 +330,53 @@ class SedCardController extends Controller
                 $SedCardLanguage->language_id 	= $language->id;
                 $SedCardLanguage->sedcard_id 	= $sedcard->id;
                 $SedCardLanguage->save();
+
+                $days  = $request->day;
+                $froms = $request->from;
+                $tos = $request->to;
+                if($request->everyday==''){
+                for($count = 0; $count < count( $days); $count++)
+                {
+                    $day = DB::table('days')->where('name',$days[$count])->first();
+                    $from = DB::table('times')->where('name',$froms[$count])->first();
+                    $to = DB::table('times')->where('name',$tos[$count])->first();
+                $data = array(
+                    'sedcard_id'  => 1,
+                    'day_id' => $day->id,
+                    'from_id' => $from->id,
+                    'to_id' => $to->id
+                ); 
+                SedcardAvailability::insert($data);
+                }
+                
+        
+                }
+                else{
+                    $days = DB::table('days')->get();
+                    $from = DB::table('times')->where('name',$request->from)->first();
+                    $to = DB::table('times')->where('name',$request->to)->first();
+                    foreach ($days as $day) {
+                        $day = DB::table('days')->where('name',$day->name)->first();
+                        $data = array(
+                            'sedcard_id'  => 1,
+                            'day_id' => $day->id,
+                            'from_id' => $from->id,
+                            'to_id' => $to->id
+                        );
+                        $insert_data[] = $data; 
+                    } 
+                    SedcardAvailability::insert($insert_data);
+        
+        
+                }
+
                 return redirect()->route('sedcard.list');
             }
             
             
         } 
         
-    }
+    } 
     public function delete(Request $request)
     { 
         SedCard::find($request->id)->delete();

@@ -20,8 +20,9 @@ class DatabaseSeeder extends Seeder
                 PubicHairSeeder:: class,
                 HairLengthSeeder:: class,
                 LocationSeeder::class,
-                SedCardSeeder::class
-                
+                SedCardSeeder::class,
+                TimeSeeder::class,
+                DaySeeder::class
          ]);
     }
 }
