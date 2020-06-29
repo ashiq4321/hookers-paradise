@@ -341,7 +341,7 @@ class SedCardController extends Controller
                     $from = DB::table('times')->where('name',$froms[$count])->first();
                     $to = DB::table('times')->where('name',$tos[$count])->first();
                 $data = array(
-                    'sedcard_id'  => 1,
+                    'sedcard_id'  => $sedcard->id,
                     'day_id' => $day->id,
                     'from_id' => $from->id,
                     'to_id' => $to->id
@@ -358,7 +358,7 @@ class SedCardController extends Controller
                     foreach ($days as $day) {
                         $day = DB::table('days')->where('name',$day->name)->first();
                         $data = array(
-                            'sedcard_id'  => 1,
+                            'sedcard_id'  => $sedcard->id,
                             'day_id' => $day->id,
                             'from_id' => $from->id,
                             'to_id' => $to->id
