@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
                 LocationSeeder::class,
                 SedCardSeeder::class,
                 TimeSeeder::class,
-                DaySeeder::class
+                DaySeeder::class,
+                SedcardLanguageSeeder::class
          ]);
     }
 }
