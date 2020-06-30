@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@include('layouts.userNavbar')
 @section('content')
+@include('inc.userNavbar')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -140,7 +140,7 @@
                             </tr>
                            </tfoot>
                        </table>
-               </div>
+                        </div>
                         Availability description: <input type="text" name="availabilityDescription" value={{old('availabilityDescription')}} > {{$errors->first('availabilityDescription')}}<br>
                         Phone description: <input type="text" name="phoneDescription" value={{old('phoneDescription')}}> {{$errors->first('phoneDescription')}}<br>
                         SedCard Description: <input type="text" name="sedcarddescription" value={{old('sedcarddescription') }}> <br>
@@ -223,6 +223,7 @@
     
      function dynamic_field(number)
      {
+         
       html = '<tr>';
             html += '<td><select name="day[]" required ><option disabled="disabled" selected="selected">Days</option>@foreach($days as $day)<option value="{{$day->name}}">{{$day->name}}</option>@endforeach</td>';
             html += '<td><select name="from[]" required ><option disabled="disabled" selected="selected">From</option>@foreach($times as $time)<option value="{{$time->name}}">{{$time->name}}</option>@endforeach</td>';
@@ -235,7 +236,8 @@
             else
             {   
                 html += '<td><button type="button" name="add" id="add" class="btn btn-success">Add</button></td>';
-                html += '<td><input type="checkbox" id="everyday" name="everyday" value="everyday"><label for="everyday"> Check if you want  enable it for everyday</label></td></tr>';
+                html += '<td><input type="checkbox" id="everyday" name="everyday" value="everyday"><label for="everyday"> Check if you want  enable it for everyday</label></td>';
+                html +='<td>|open on holidays:<input type="radio" name="holydays" value="yes"><label>yes</label><input type="radio" name="verified" value="no"><label>no</label></td></tr>';
 
                 $('tbody').html(html);
                 

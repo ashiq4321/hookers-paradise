@@ -1,5 +1,4 @@
 @extends('layouts.app')
-@include('layouts.userNavbar')
 @section('content')
 <br>
             <b>Name:</b> {{$sedcard->name}}<br>

@@ -23,7 +23,7 @@
             <td>{{$sedcard->priceDescription}}</td>
             <td>{{$sedcard->isActive}}</td>
             <td>
-                <a  href="{{route('user.show', $sedcard->id)}}">click</a>
+                <a  href="{{route('sedcard.show', $sedcard->id)}}">click</a>
             </td>
         </tr>
         @endforeach 

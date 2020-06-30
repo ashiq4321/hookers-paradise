@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@include('layouts.userNavbar')
 @section('content')
+@include('inc.userNavbar')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

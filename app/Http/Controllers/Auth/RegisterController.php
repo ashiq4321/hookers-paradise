@@ -92,15 +92,7 @@ class RegisterController extends Controller
 							->withInput();		
         } */
 
-        $address = new Address();
-        $address->city 	= $data['city'];
-        $address->postCode 	= $data['postCode'];
-        $address->country	= $data['country'];
-        $address->street 	= $data['street'];
-        $address->house 	= $data['house'];				
-        $address->description 	= $data['description'];		
-        $address->save();
-
+        
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -108,7 +100,7 @@ class RegisterController extends Controller
             'password' =>Hash::make($data['password']),
             'phoneNumber' =>$data['phoneNumber'],
             'language_id' =>null,
-            'address_id' =>$address->id,
+            'address_id' =>null
         ]);
     }
 }

@@ -1,0 +1,107 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: #272727;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.txt-mainColor {
+  color: #bd0f51;
+}
+
+.txt-darkColor {
+  color: #272727;
+}
+
+.txt-lightColor {
+  color: #fefefe;
+}
+
+.main-btn {
+  display: block;
+  margin: 20px auto;
+  min-width: 180px;
+  width: auto;
+  min-height: 35px;
+  padding: 5px 25px;
+  background-color: rgba(189, 15, 81, 0.8);
+  color: #fefefe;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+  font-size: 1rem;
+}
+
+.main-btn:hover {
+  background-color: rgba(189, 15, 81, 0.6);
+}
+
+.animated_input {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.animated_input input {
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 300px;
+  border: 2px solid #bd0f51;
+  border-radius: 10px;
+  background: transparent;
+  color: #fefefe;
+}
+
+.animated_input input:focus {
+  outline: none;
+}
+
+.animated_input label {
+  padding: 0px 10px 0px 10px;
+  background-color: #272727;
+  color: #fefefe;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 15px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+/* active state */
+
+.animated_input input:focus ~ label,
+.animated_input input:valid ~ label {
+  top: -10px;
+  font-size: 14px;
+  color: #bd0f51;
+}
+
+.sign-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-height: 360px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  border: 2px solid #bd0f51;
+  border-radius: 8px;
+}
+
+.sign-container h1,
+.sign-container p {
+  color: #fefefe;
+}
+
+.sign-container form {
+  margin-top: 40px;
+}
+

@@ -26,6 +26,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/user', 'UserController');
 
+Route::get('/sedcard/show/{id}', 'SedCardController@showSedcard')->name('sedcard.show');
+
 Route::get('/sedcard/list', 'SedCardController@listSedCard')->name('sedcard.list')->middleware('auth');
 
 Route::get('/sedcard/create', 'SedCardController@createSedCard')->name('sedcard.create')->middleware('auth');

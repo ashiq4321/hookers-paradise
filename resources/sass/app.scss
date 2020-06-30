@@ -1,8 +1,21 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import "variables";
+@import "config";
+@import "animatedInput";
 
-// Variables
-@import 'variables';
-
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+.sign-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-height: 360px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    border: 2px solid $primary-color;
+    border-radius: 8px;
+    & h1,
+    p {
+        color: $light-color;
+    }
+    & form {
+        margin-top: 40px;
+    }
+}

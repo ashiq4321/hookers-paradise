@@ -62,30 +62,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)//to view owner sedCard 
+    public function show($id)
     {
-        $sedcard = DB::table('sedcards')->where('id',$id)->first();
-        $sedcard_bodyhair = DB::table('bodyhairs')->where('id',$sedcard->bodyHairs_id)->first();
-        $sedcard_brasize = DB::table('brasizes')->where('id',$sedcard->braSize_id)->first();
-        $sedcard_eyeColor = DB::table('colors')->where('id',$sedcard->eyeColor_id)->first();
-        $sedcard_hairColor = DB::table('colors')->where('id',$sedcard->hairColor_id)->first();
-        $sedcard_skinColor = DB::table('colors')->where('id',$sedcard->skinColor_id)->first();
-        $sedcard_hairlength = DB::table('hairlengths')->where('id',$sedcard->hairlengths_id)->first();
-        $sedcard_pubichair = DB::table('pubichairs')->where('id',$sedcard->pubicHair_id)->first();
-        $address = DB::table('addresses')->where('id',$sedcard->address_id)->first();
-        $location = DB::table('locations')->where('id',$sedcard->location_id)->first();
-
-        return view('user.viewSedcard',['sedcard_bodyhair'=>$sedcard_bodyhair,
-                                            'sedcard_brasize'=>$sedcard_brasize,
-                                            'sedcard_eyeColor'=>$sedcard_eyeColor,
-                                            'sedcard_skinColor'=>$sedcard_skinColor,
-                                            'sedcard_hairColor'=>$sedcard_hairColor,
-                                            'sedcard_hairlength'=>$sedcard_hairlength,
-                                            'sedcard_pubichair'=>$sedcard_pubichair,
-                                            'sedcard'=>$sedcard,
-                                            'address'=>$address,
-                                            'location'=>$location,
-                                            ]);
     }
 
     /**
