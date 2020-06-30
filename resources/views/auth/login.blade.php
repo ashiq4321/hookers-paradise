@@ -10,7 +10,7 @@
                 <div class="sign-container">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-                        <div class="sign-container">
+                        <div >
                             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
                             
                         <div class="animated_input">

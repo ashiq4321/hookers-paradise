@@ -1,35 +1,3 @@
-Skip to content
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@ashiq4321 
-smaur-team
-/
-hookersparadise
-Private
-0
-00
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-hookersparadise/app/Http/Controllers/SedCardController.php /
-@ashiq4321
-ashiq4321 individual sedcard_id added for day time selection
-Latest commit 811d769 yesterday
- History
- 1 contributor
-387 lines (336 sloc)  16.5 KB
-  
 <?php
 
 namespace App\Http\Controllers;
@@ -417,3 +385,4 @@ class SedCardController extends Controller
     }
 
 }
+

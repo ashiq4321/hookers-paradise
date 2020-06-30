@@ -57,7 +57,8 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phoneNumber'=>'required|unique:users',
-            'dob'=>'required'
+            'dob'=>'required',
+            'language'=>'required'
             
         ]);
     }
@@ -92,6 +93,7 @@ class RegisterController extends Controller
 							->withInput();		
         } */
 
+        $language = DB::table('languages')->where('name',$data['language'])->first();
         
         return User::create([
             'name' => $data['name'],
@@ -99,7 +101,7 @@ class RegisterController extends Controller
             'dateOfBirth' =>$data['dob'],
             'password' =>Hash::make($data['password']),
             'phoneNumber' =>$data['phoneNumber'],
-            'language_id' =>null,
+            'language_id' =>$language->id,
             'address_id' =>null
         ]);
     }

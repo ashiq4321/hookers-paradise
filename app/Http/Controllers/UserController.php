@@ -25,9 +25,7 @@ class UserController extends Controller
     {
         $languages = DB::table('languages')->get();
         $user_language = DB::table('languages')->where('id',Auth::user()->language_id)->first();
-        $address = DB::table('addresses')->where('id',Auth::user()->address_id)->first();
         return view('user.profile',['languages' => $languages,
-                                    'address' => $address,
                                     'user_language' => $user_language]);
        
     }
@@ -92,13 +90,7 @@ class UserController extends Controller
         'email'=>'required|email',
         'phoneNumber'=>'required',
         'dob'=>'required',
-        'language'=>'required',
-        'city'=>'required',
-        'postCode'=>'required',
-        'country'=>'required',
-        'street'=>'required',
-        'house'=>'required',
-        'description'=>'required',
+        'language'=>'required'
     ]);
     if($validation->fails()){
         return back()
@@ -111,18 +103,8 @@ class UserController extends Controller
          
 
         $language = DB::table('languages')->where('name',$request->language)->first();
-        $address = DB::table('addresses')->where('id',Auth::user()->address_id)->first();
         $user = DB::table('addresses')->where('id',Auth::user()->id)->first();
        
-
-        DB::table('addresses')
-        ->where('id', Auth::user()->address_id)
-        ->update(array('city' => $request->city,
-                       'postCode' => $request->postCode,
-                       'country' => $request->country,
-                       'street' => $request->street,
-                       'house' => $request->house,
-                       'description' => $request->description));
         DB::table('users')
         ->where('id',Auth::user()->id)
         ->update(array('name' => $request->name,
