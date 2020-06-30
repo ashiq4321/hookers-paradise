@@ -39,3 +39,7 @@ Route::patch('/sedcard/edit/{id}', 'SedCardController@update')->name('sedcard.up
 Route::get('/sedcard/delete/{id}', 'SedCardController@delete')->name('sedcard.delete')->middleware('auth');
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

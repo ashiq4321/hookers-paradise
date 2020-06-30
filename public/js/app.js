@@ -49839,8 +49839,13 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! G:\Fiverr\Web design\Laravel-from-scratch-master\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! G:\Fiverr\Web design\Laravel-from-scratch-master\resources\sass\app.scss */"./resources/sass/app.scss");
+=======
+__webpack_require__(/*! /var/www/html/redlight.local/hookersparadise/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/html/redlight.local/hookersparadise/resources/sass/app.scss */"./resources/sass/app.scss");
+>>>>>>> 63eff711075023e90ad9bd0de254f30623a5f59f
 
 
 /***/ })
