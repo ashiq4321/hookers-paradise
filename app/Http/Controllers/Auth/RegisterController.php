@@ -5,12 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
-use App\Address;
-use App\Language;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use DB;
 
 class RegisterController extends Controller
 {
@@ -56,9 +53,6 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'phoneNumber'=>'required|unique:users',
-            'dob'=>'required'
-            
         ]);
     }
 
@@ -70,45 +64,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        /* $validation = Validator::make($data->all(), [
-            'name'=>'required',
-            'email'=>'required|email|unique:users',
-            'phoneNumber'=>'required|unique:users',
-            'dob'=>'required',
-            'language'=>'required',
-            'city'=>'required',
-            'postCode'=>'required',
-            'country'=>'required',
-            'street'=>'required',
-            'house'=>'required',
-            'description'=>'required',
-		]);
-		if($validation->fails()){
-			return back()
-					->with('errors', $validation->errors())
-					->withInput();
-			return redirect()->route('registration.index')
-                            ->with('errors', $validation->errors())
-							->withInput();		
-        } */
-
-        $address = new Address();
-        $address->city 	= $data['city'];
-        $address->postCode 	= $data['postCode'];
-        $address->country	= $data['country'];
-        $address->street 	= $data['street'];
-        $address->house 	= $data['house'];				
-        $address->description 	= $data['description'];		
-        $address->save();
-
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'dateOfBirth' =>$data['dob'],
-            'password' =>Hash::make($data['password']),
-            'phoneNumber' =>$data['phoneNumber'],
-            'language_id' =>null,
-            'address_id' =>$address->id,
+            'password' => Hash::make($data['password']),
         ]);
     }
 }
