@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -13,6 +14,7 @@ class DatabaseSeeder extends Seeder
     {
          $this->call([LanguageSeeder:: class,
                 AddressSeeder:: class,
+                RolesTableSeeder::class,
                 UserSeeder::class,
                 BodyHairSeeder:: class,
                 BraSizeSeeder:: class,
@@ -20,7 +22,7 @@ class DatabaseSeeder extends Seeder
                 PubicHairSeeder:: class,
                 HairLengthSeeder:: class,
                 LocationSeeder::class,
-                SedCardSeeder::class,
+                SedcardSeeder::class,
                 TimeSeeder::class,
                 DaySeeder::class,
                 SedcardLanguageSeeder::class

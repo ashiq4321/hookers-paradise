@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
+use App\User;
+use App\Role;
 
 class UserSeeder extends Seeder
 {
@@ -12,8 +14,24 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'id'=>1,
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        User::truncate();
+        DB::table('role_user')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+        $adminRole = Role::where('name', 'admin')->first();
+
+        User::create([
+            'name' => 'seb',
+            'email' =>'seb021290@gmail.com',
+            'dateofBirth' => '2000-01-01',
+            'password' => Hash::make('test1234'),
+            'phoneNumber' => '01452065402',
+            'address_id' => 1,
+            'language_id' => 1
+        ])->roles()->attach($adminRole);
+
+        User::create([
             'name' => 'maria',
             'email' =>'maria@gmail.com',
             'dateofBirth' => '2000-01-01',
@@ -22,8 +40,7 @@ class UserSeeder extends Seeder
             'address_id' => 1,
             'language_id' => 1
         ]);
-        DB::table('users')->insert([
-            'id'=>2,
+        User::create([
             'name' => 'Juli',
             'email' =>'juli@gmail.com',
             'dateofBirth' => '2000-01-01',
@@ -32,8 +49,7 @@ class UserSeeder extends Seeder
             'address_id' => 2,
             'language_id' => 2
         ]);
-        DB::table('users')->insert([
-            'id'=>3,
+        User::create([
             'name' => 'Angle',
             'email' =>'angle@gmail.com',
             'dateofBirth' => '2000-01-01',

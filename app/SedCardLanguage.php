@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SedCardLanguage extends Model
+class SedcardLanguage extends Model
 {
-    protected $table = "sedcardlanguages";
+    protected $table = "Sedcardlanguages";
     public $timestamps = false;
 
 }

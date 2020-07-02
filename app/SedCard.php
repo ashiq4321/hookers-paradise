@@ -5,9 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class SedCard extends Model
+class Sedcard extends Model
 {
-    protected $table = "sedcards";
+    protected $table = "Sedcards";
     use SoftDeletes;
-    
+
 }

@@ -29,7 +29,15 @@ class SedCardController extends Controller
             ['user_id', '=', $id],
             ['deleted_at', '=', null],
         ])->get();
-        return view('user.sedCardList', ['sedcards'=>$sedcards]);
+        $a=[];
+        foreach ($sedcards as $sedcard) {
+            $groups= DB::table('groupsedcard')->where([['sedcard_id','=',$sedcard->id],['isAccepted','=','no']])->get()->toArray();
+             foreach ($groups as $group) {
+                array_push($a,array("sedcard_id"=>$sedcard->id, "group_id"=>$group->group_id));
+              } 
+          }
+          /* dd($a); */
+        return view('user.sedCardList', ['sedcards'=>$sedcards,'groups'=>$a]);
         
     }
 

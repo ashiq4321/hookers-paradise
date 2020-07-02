@@ -25,6 +25,14 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/user', 'UserController');
+Route::get('/user/group/members/{id}', 'UserController@groupmember')->name('user.groupmember')->middleware('auth');
+Route::get('/user/group/{id}/member/{sedcard}', 'UserController@addMember')->name('user.addMember')->middleware('auth');
+Route::patch('/user/{id}/edit', 'UserController@groupUpdate')->name('user.groupUpdate')->middleware('auth');
+Route::get('/user/group/{id}/delete', 'UserController@deleteGroup')->name('user.deleteGroup')->middleware('auth');
+Route::get('/user/group/member/{id}/delete/{member}', 'UserController@deleteMember')->name('user.deleteMember')->middleware('auth');
+Route::get('/user/group/{id}/accept/{member}', 'UserController@acceptGroup')->name('user.acceptGroup')->middleware('auth');
+Route::get('/user/group/{id}/decline/{member}', 'UserController@declineGroup')->name('user.declineGroup')->middleware('auth');
+Route::post('/user/group/{id}/member', 'UserController@memberSearch')->name('user.memberSearch')->middleware('auth');
 
 Route::get('/sedcard/show/{id}', 'SedCardController@showSedcard')->name('sedcard.show');
 
@@ -38,8 +46,7 @@ Route::patch('/sedcard/edit/{id}', 'SedCardController@update')->name('sedcard.up
 
 Route::get('/sedcard/delete/{id}', 'SedCardController@delete')->name('sedcard.delete')->middleware('auth');
 
-
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::namespace('Admin')->prefix('HPAC')->name('admin.')->middleware('can:admincenter')->group( function() {
+    Route::get('/', 'DashboardController@index');
+    Route::resource('/users', 'UserController', ['except' => [ 'create', 'store']]);
+});

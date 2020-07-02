@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class SedCardSeeder extends Seeder
+class SedcardSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,11 +11,11 @@ class SedCardSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('sedcards')->insert([
+        DB::table('Sedcards')->insert([
             'id'=>1,
             'user_id' => '1',
             'address_id' => '1',
-            'location_id' => '1',						
+            'location_id' => '1',
             'eyeColor_id' => '1',
             'hairlengths_id' => '1',
             'pubicHair_id' => '1',
@@ -39,7 +39,7 @@ class SedCardSeeder extends Seeder
             'priceDescription' => '$50 per hour',
             'availabilityDescription' => 'from 8pm - 6am',
             'phoneDescription' =>'+03155662200 is available only service time',
-            'description' => 'this is hazel sedcard',
+            'description' => 'this is hazel Sedcard',
             'isActive' => 'yes',
             'isVerified' => 'yes',
             'isPhoneVerified' => 'yes',

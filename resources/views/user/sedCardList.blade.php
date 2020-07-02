@@ -27,10 +27,15 @@
                                         <td>{{$sedcard->phoneNumber}}</td>
                                         <td>{{$sedcard->isActive}}</td>
                                         <td>
-                                        <a href="{{route('sedcard.edit',$sedcard->id)}}}">Edit</a>|
-                                        <a href="{{route('sedcard.delete',$sedcard->id)}}}">Delete</a>
-                            
-                                        </td>
+                                        <a href="{{route('sedcard.edit',$sedcard->id)}}}">view</a>|
+                                        <a href="{{route('sedcard.delete',$sedcard->id)}}}">Delete</a></td>
+                                        @foreach ($groups as $group)
+                                            @if ($group['sedcard_id']==$sedcard->id)
+                                        <td>This sedcard rquested to join in{{$group['group_id']}}<a href="{{route('user.acceptGroup',['id' => $group['group_id'],'member'=>$group['sedcard_id']])}}}">accept</a>|
+                                                                                                <a href="{{route('user.declineGroup',['id' => $group['group_id'],'member'=>$group['sedcard_id']])}}}">delete</a></td>
+                                            @endif
+                                        @endforeach
+                                        
                                     </tr>
                                 @endforeach
                             @else

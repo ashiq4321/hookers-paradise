@@ -11,9 +11,9 @@ class SedcardLanguageSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('sedcardlanguages')->insert([
+        DB::table('Sedcardlanguages')->insert([
             'language_id'=>1,
-            'sedcard_id' => 1
+            'Sedcard_id' => 1
             ]);
     }
 }
